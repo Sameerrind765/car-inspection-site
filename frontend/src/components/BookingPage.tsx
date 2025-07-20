@@ -5,7 +5,7 @@ import PaymentSection from './PaymentSection';
 import PricingSection from './PricingSection';
 import { FormData } from '../types';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BookingPage: React.FC = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
