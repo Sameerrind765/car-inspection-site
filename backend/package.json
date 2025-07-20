@@ -5,8 +5,8 @@
   "main": "src/server.ts",
   "module": "",
   "scripts": {
-    "start": "node src/server.ts",
-    "dev": "nodemon src/server.ts",
+    "start": "node dist/server.ts",
+    "dev": "nodemon dist/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
