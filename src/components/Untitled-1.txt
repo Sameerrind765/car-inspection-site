@@ -1,0 +1,7 @@
+POST /api/bookings
+// Body: FormData + metadata
+// Response: { bookingId, status, message }
+
+PUT /api/bookings/{bookingId}/payment
+// Body: { paymentInfo, status, paidAt }
+// Response: { success, bookingDetails }
