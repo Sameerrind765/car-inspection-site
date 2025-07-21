@@ -2,11 +2,11 @@
   "name": "autocheckusa-backend",
   "version": "1.0.0",
   "description": "AutoCheckUSA Car Inspection Booking API",
-  "main": "src/server.ts",
-  "module": "",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/server.ts",
-    "dev": "nodemon dist/server.ts",
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
