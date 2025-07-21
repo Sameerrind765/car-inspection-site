@@ -23,7 +23,7 @@ const BookingPage: React.FC = () => {
       // Log what you're sending
       console.log("Sending data to backend:", data);
 
-      const response = await fetch(`${API_BASE_URL}/bookings`, {
+      const response = await fetch(`${API_BASE_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -32,6 +32,7 @@ const BookingPage: React.FC = () => {
       });
 
       const result = await response.json();
+      console.log("API_BASE_URL:", API_BASE_URL);
 
       if (!response.ok) {
         throw new Error(result.message || 'Failed to submit booking');
