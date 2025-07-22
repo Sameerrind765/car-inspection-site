@@ -10,13 +10,15 @@ import SendmailTransport from "nodemailer/lib/sendmail-transport";
 
 dotenv.config();
 
-const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON!);
+const decoded = Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_BASE64!, 'base64').toString('utf8');
+const credentials = JSON.parse(decoded);
 
 const auth = new JWT({
   email: credentials.client_email,
   key: credentials.private_key,
-  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
+
 
 // Type definitions
 export type PackageType = "basic" | "standard" | "premium";
