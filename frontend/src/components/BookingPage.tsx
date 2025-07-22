@@ -20,27 +20,32 @@ const BookingPage: React.FC = () => {
     setError(null);
 
     try {
-      // Log what you're sending
-      console.log("Sending data to backend:", data);
-
       const response = await fetch(`${API_BASE_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...data, packageType: selectedPackage }) // add selectedPackage if needed
+        body: JSON.stringify({ ...data, packageType: selectedPackage })
       });
 
-      const result = await response.json();
       console.log("API_BASE_URL:", API_BASE_URL);
 
-      console.log("Booking response:", result);
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('❌ Response is not JSON:', text);
+        throw new Error('Invalid JSON response from server');
+      }
+
+      const result = await response.json();
+      console.log("✅ Booking response:", result);
 
       setBookingId(result.bookingId || `booking_${Date.now()}`);
       setFormData(data);
       setShowPayment(true);
 
-    } catch (err) {
+    }
+    catch (err) {
       console.error("Error submitting booking:", err);
       setError(err instanceof Error ? err.message : 'Failed to submit booking. Please try again.');
     } finally {
