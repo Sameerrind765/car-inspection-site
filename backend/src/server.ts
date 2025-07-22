@@ -11,7 +11,7 @@ import SendmailTransport from "nodemailer/lib/sendmail-transport";
 dotenv.config();
 
 const auth = new JWT({
-  keyFile: path.join(__dirname, "../google-service-account.json"),
+  keyFile: path.join(__dirname, "google-service-account.json"),
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
