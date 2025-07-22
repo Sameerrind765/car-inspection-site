@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft,  CheckCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { FormData } from '../types';
 import { inspectionPackages } from '../data/packages';
 
@@ -20,7 +20,6 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
   const navigate = useNavigate();
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   const [processing, setProcessing] = useState(false);
-
   const selectedPackage = inspectionPackages.find(pkg => pkg.id === formData.packageType);
 
   useEffect(() => {
@@ -146,7 +145,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
             <div className="border-t pt-3 mt-4">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold">Total Amount:</span>
-                <span className="text-2xl font-bold text-green-600">$50.00</span>
+                <span className="text-2xl font-bold text-green-600">${selectedPackage.price}</span>
               </div>
             </div>
           </div>
