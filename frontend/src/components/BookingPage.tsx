@@ -34,10 +34,6 @@ const BookingPage: React.FC = () => {
       const result = await response.json();
       console.log("API_BASE_URL:", API_BASE_URL);
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Failed to submit booking');
-      }
-
       console.log("Booking response:", result);
 
       setBookingId(result.bookingId || `booking_${Date.now()}`);
@@ -47,43 +43,6 @@ const BookingPage: React.FC = () => {
     } catch (err) {
       console.error("Error submitting booking:", err);
       setError(err instanceof Error ? err.message : 'Failed to submit booking. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-  const handlePaymentSuccess = async (paymentData: any) => {
-    if (!formData) return;
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      // For now, mock successful payment processing
-      console.log("Payment data:", paymentData);
-      console.log("Form data:", formData);
-      console.log("Booking ID:", bookingId);
-
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Mock successful response
-      const mockPaymentResponse = {
-        success: true,
-        transactionId: `txn_${Date.now()}`,
-        status: 'completed'
-      };
-
-      console.log("Payment response:", mockPaymentResponse);
-
-      // Mock confirmation email sent
-      console.log("Confirmation email sent for booking:", bookingId);
-
-      // Show success message
-      alert('Booking confirmed! You will receive a confirmation email shortly.');
-
-    } catch (err) {
-      console.error("Error processing payment:", err);
-      setError(err instanceof Error ? err.message : 'Payment processing failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -217,42 +176,6 @@ const BookingPage: React.FC = () => {
                 Fill out the form below to schedule your professional car inspection
               </p>
             </div>
-            <button
-              onClick={() => {
-                const testData = {
-                  name: 'sameerrind',
-                  email: 'sameerrind789@gmail.com',
-                  phone: '03113021194',
-                  alternatePhone: '',
-                  carMake: 'toeew',
-                  address: '1111111',
-                  carColor: 'ewe',
-                  carModel: 'ewe',
-                  carYear: '11111',
-                  city: '111',
-                  date: '2025-07-29T20:17',
-                  emergencyContact: '321',
-                  emergencyPhone: '321',
-                  fuelType: 'gasoline' as const,
-                  inspectionPurpose: 'pre-purchase' as const,
-                  licensePlate: '1111111111',
-                  maintenanceHistory: 'irregular' as const,
-                  mileage: '1111111',
-                  packageType: 'premium' as const,
-                  preferredInspector: '',
-                  previousAccidents: 'yes' as const,
-                  specialRequests: '321321',
-                  specificConcerns: '12321321',
-                  state: '11',
-                  timePreference: 'flexible' as const,
-                  transmission: 'automatic' as const,
-                  vin: '11111111111111111',
-                  zipCode: '11'
-                };
-                handleFormSubmit(testData);
-              }}
-            >submit
-            </button>
             <BookingForm
               onSubmit={handleFormSubmit}
               selectedPackage={selectedPackage}

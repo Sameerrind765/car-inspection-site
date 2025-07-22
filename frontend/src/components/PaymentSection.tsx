@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Shield, CreditCard, CheckCircle } from 'lucide-react';
+import { ArrowLeft,  CheckCircle } from 'lucide-react';
 import { FormData } from '../types';
 import { inspectionPackages } from '../data/packages';
 
@@ -57,10 +57,10 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
             await actions.order.capture();
             // Here you would normally send the booking data to your backend
             console.log('Payment successful, booking data:', formData);
-            
+
             // Simulate API call to save booking
             await new Promise(resolve => setTimeout(resolve, 2000));
-            
+
             navigate('/confirmation', { state: { formData } });
           } catch (error) {
             console.error('Payment error:', error);
@@ -116,7 +116,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
             <CheckCircle className="h-5 w-5 text-green-600" />
             <span>Booking Summary</span>
           </h3>
-          
+
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-600">Customer:</span>
@@ -142,7 +142,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
               <span className="text-gray-600">Address:</span>
               <span className="font-medium text-right max-w-xs">{formData.address}</span>
             </div>
-            
+
             <div className="border-t pt-3 mt-4">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold">Total Amount:</span>
@@ -155,45 +155,40 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
         {/* Security Notice */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <div className="flex items-center space-x-3">
-            <Shield className="h-6 w-6 text-blue-600 flex-shrink-0" />
-            <div>
-              <h4 className="font-semibold text-blue-900">Secure Payment Processing</h4>
-              <p className="text-sm text-blue-700">
-                Your payment is processed securely through PayPal. We never store your payment information.
+            <div className="border rounded-md p-4 bg-green-50 shadow-sm">
+              <h3 className="text-lg font-bold text-green-900 mb-2">Booking Confirmation</h3>
+              <p className="text-sm text-green-800">
+                Hi {formData.name},<br /><br />
+                Thank you for booking your vehicle inspection with us!<br /><br />
+                We’ve received your booking details and everything looks great. To confirm your appointment, please complete your payment using the secure link below:<br /><br />
+                <a
+                  href="https://www.paypal.me/jamshediqbal865"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  Complete Payment
+                </a><br /><br />
+                Please complete payment promptly to lock in your selected time slot.<br /><br />
+                If you have any questions or concerns, feel free to reply to this email or contact us directly through. <br /> <a
+                  href="mailto:info@AutoCheckUs.com?subject=Booking Confirmation&body=Hi, I have a question about my booking."
+                  className="text-blue-600 underline"
+                >
+                  Contact Support
+                </a><br /><br />
+                Thanks again — we’re excited to serve you.<br /><br />
+                Best regards,<br />
+                The AutoCheck Us Team
               </p>
             </div>
+
+
           </div>
         </div>
 
-        {/* PayPal Button Container */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-center space-x-2 text-gray-600">
-            <CreditCard className="h-5 w-5" />
-            <span className="font-medium">Pay with PayPal</span>
-          </div>
-          
-          {processing && (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mx-auto mb-4"></div>
-              <p className="text-gray-600">Processing your payment and booking...</p>
-            </div>
-          )}
-          
-          <div 
-            id="paypal-button-container" 
-            className={`${processing ? 'hidden' : ''}`}
-          ></div>
-          
-          {!paypalLoaded && !processing && (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading payment options...</p>
-            </div>
-          )}
-        </div>
 
         <p className="text-center text-sm text-gray-500 mt-6">
-          By completing this payment, you agree to our terms of service. 
+          By completing this payment, you agree to our terms of service.
           You will receive a confirmation email with your inspection details.
         </p>
       </div>
