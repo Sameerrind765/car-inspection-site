@@ -27,6 +27,9 @@ build/
 .env.local
 .env.*.local
 
+# Google service account credentials
+google-service-account.json
+
 # OS and IDE files
 .DS_Store
 Thumbs.db
