@@ -1,24 +1,31 @@
-import express, { Application, Request, Response, NextFunction } from "express";
+import express from "express";
+import type { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { google } from "googleapis";
+import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { JWT } from "google-auth-library";
-import SendmailTransport from "nodemailer/lib/sendmail-transport";
+import sendmailTransport from "nodemailer/lib/sendmail-transport/index.js";
 
 dotenv.config();
 
-const decoded = Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_BASE64!, 'base64').toString('utf8');
+const decoded = Buffer.from(
+  process.env.GOOGLE_SERVICE_ACCOUNT_BASE64!,
+  "base64"
+).toString("utf8");
+
 const credentials = JSON.parse(decoded);
+console.log("KEY START:", credentials.private_key.slice(0, 50));
 
 const auth = new JWT({
-  email: credentials.client_email,
-  key: credentials.private_key,
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      email: process.env.GOOGLE_CLIENT_EMAIL,
+      key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
-
 
 // Type definitions
 export type PackageType = "basic" | "standard" | "premium";
