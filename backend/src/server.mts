@@ -135,6 +135,15 @@ async function appendToSheet(booking: Booking) {
   });
 }
 
+app.get('/api/debug-env', (req, res) => {
+  res.json({
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+    firstLineOfKey: process.env.GOOGLE_PRIVATE_KEY?.slice(0, 30)
+  });
+});
+
+
 app.post("/api/bookings", async (req: Request, res: Response) => {
   const booking: Booking = req.body;
   bookings.push(booking);
