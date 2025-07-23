@@ -13,20 +13,53 @@ import sendmailTransport from "nodemailer/lib/sendmail-transport/index.js";
 
 dotenv.config();
 
-const decoded = Buffer.from(
-  process.env.GOOGLE_SERVICE_ACCOUNT_BASE64!,
-  "base64"
-).toString("utf8");
+function getGoogleCredentials() {
+  // Method 1: Base64 encoded JSON
+  if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY_BASE64) {
+    try {
+      return JSON.parse(
+        Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_BASE64, 'base64').toString('utf8')
+      );
+    } catch (error) {
+      console.error('Failed to decode base64 service account key:', error);
+    }
+  }
+  
+  // Method 2: Direct JSON string
+  if (process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON) {
+    try {
+      return JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
+    } catch (error) {
+      console.error('Failed to parse service account JSON:', error);
+    }
+  }
+  
+  // Method 3: Individual components
+  if (process.env.GOOGLE_PRIVATE_KEY && process.env.GOOGLE_CLIENT_EMAIL) {
+    return {
+      type: "service_account",
+      project_id: process.env.GOOGLE_PROJECT_ID,
+      private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      auth_uri: "https://accounts.google.com/o/oauth2/auth",
+      token_uri: "https://oauth2.googleapis.com/token",
+      auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
+    };
+  }
+  
+  throw new Error('No valid Google service account credentials found');
+}
 
-const credentials = JSON.parse(decoded);
+const credentials = getGoogleCredentials();
 
-const serviceAccountKey = {
-  type: "service_account",
-  project_id: process.env.GOOGLE_PROJECT_ID,
-  private_key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
-  client_email: process.env.GOOGLE_CLIENT_EMAIL,
-  // ... other required fields
-};
+// const serviceAccountKey = {
+//   type: "service_account",
+//   project_id: process.env.GOOGLE_PROJECT_ID,
+//   private_key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+//   client_email: process.env.GOOGLE_CLIENT_EMAIL,
+//   // ... other required fields
+// };
 
 // const auth = new JWT({
 //       email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -35,7 +68,7 @@ const serviceAccountKey = {
 // });
 
 const auth = new GoogleAuth({
-  credentials: serviceAccountKey,
+  credentials,
   scopes: ['https://www.googleapis.com/auth/spreadsheets']
 });
 // const auth = new JWT({
