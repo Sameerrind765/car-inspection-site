@@ -8,7 +8,7 @@ import { google } from "googleapis";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { JWT } from "google-auth-library";
+import { GoogleAuth } from "google-auth-library";
 import sendmailTransport from "nodemailer/lib/sendmail-transport/index.js";
 
 dotenv.config();
@@ -19,13 +19,29 @@ const decoded = Buffer.from(
 ).toString("utf8");
 
 const credentials = JSON.parse(decoded);
-console.log("KEY START:", credentials.private_key.slice(0, 50));
 
-const auth = new JWT({
-      email: process.env.GOOGLE_CLIENT_EMAIL,
-      key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+const serviceAccountKey = {
+  type: "service_account",
+  project_id: process.env.GOOGLE_PROJECT_ID,
+  private_key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+  client_email: process.env.GOOGLE_CLIENT_EMAIL,
+  // ... other required fields
+};
+
+// const auth = new JWT({
+//       email: process.env.GOOGLE_CLIENT_EMAIL,
+//       key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
+//       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+// });
+
+const auth = new GoogleAuth({
+  credentials: serviceAccountKey,
+  scopes: ['https://www.googleapis.com/auth/spreadsheets']
 });
+// const auth = new JWT({
+//   credentials: serviceAccountKey,
+//   scopes: ['https://www.googleapis.com/auth/spreadsheets']
+// });
 
 // Type definitions
 export type PackageType = "basic" | "standard" | "premium";
