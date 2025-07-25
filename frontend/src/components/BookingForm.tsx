@@ -636,7 +636,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, selectedPackage }) 
                     <span>Processing...</span>
                   </>
                 ) : (
-                  <span>Proceed to Payment</span>
+                  <span>Next Step</span>
                 )}
               </button>
             </div>

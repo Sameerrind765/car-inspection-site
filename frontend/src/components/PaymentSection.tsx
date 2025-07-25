@@ -172,17 +172,10 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
               <p className="text-sm text-green-800">
                 Hi {formData.name},<br /><br />
                 Thank you for booking your vehicle inspection with us!<br /><br />
-                We’ve received your booking details and everything looks great. To confirm your appointment, please complete your payment using the secure link below:<br /><br />
+                We’ve received your booking details and everything looks great. To confirm your appointment, please use the payment option provided above to complete your payment.<br /><br />
+                This will secure your selected time slot.<br /><br />
+                If you have any questions or concerns, feel free to reply to this email or contact us directly through the link below:<br />
                 <a
-                  href="https://www.paypal.me/jamshediqbal865"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 underline"
-                >
-                  Complete Payment
-                </a><br /><br />
-                Please complete payment promptly to lock in your selected time slot.<br /><br />
-                If you have any questions or concerns, feel free to reply to this email or contact us directly through. <br /> <a
                   href="mailto:info@AutoCheckUs.com?subject=Booking Confirmation&body=Hi, I have a question about my booking."
                   className="text-blue-600 underline"
                 >
@@ -193,6 +186,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
                 The AutoCheck Us Team
               </p>
             </div>
+
 
 
           </div>
