@@ -101,7 +101,7 @@ const BookingPage: React.FC = () => {
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   AutoTrustReport
                 </h1>
-                <p className="text-gray-600 text-sm">America's #1 Car Inspection Service</p>
+                <p className="text-gray-600 text-sm">The World’s Leading Car Inspection Service</p>
               </div>
             </div>
 
