@@ -46,7 +46,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
               amount: {
                 value: selectedPackage?.price.toFixed(2) || '50.00'
               },
-              description: `AutoTrustReport ${selectedPackage?.name || 'Car Inspection Service'}`
+              description: `AutoCheckUSA ${selectedPackage?.name || 'Car Inspection Service'}`
             }]
           });
         },
@@ -148,62 +148,64 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
                 <button
                   type="button"
                   onClick={() => window.open("https://www.paypal.com/paypalme/jamshediqbal865", "_blank")}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-6 py-3 border text-white mb-2 font-weight: 700; border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  style={{
+                    backgroundColor: '#2056e0'
+                  }}
                 >
-                  Donate via PayPal
+                  Pay with PayPal
                 </button>
               </div>
-              <div className="border-t pt-3 mt-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold">Total Amount:</span>
-                  <span className="text-2xl font-bold text-green-600">${selectedPackage.price}</span>
-                </div>
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-semibold">Total Amount:</span>
+                <span className="text-2xl font-bold text-green-600">${selectedPackage?.price}</span>
               </div>
             </div>
           </div>
-
-          {/* Security Notice */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <div className="flex items-center space-x-3">
-              <div className="border rounded-md p-4 bg-green-50 shadow-sm">
-                <h3 className="text-lg font-bold text-green-900 mb-2">Booking Confirmation</h3>
-                <p className="text-sm text-green-800">
-                  Hi {formData.name},<br /><br />
-                  Thank you for booking your vehicle inspection with us!<br /><br />
-                  We’ve received your booking details and everything looks great. To confirm your appointment, please complete your payment using the secure link below:<br /><br />
-                  <a
-                    href="https://www.paypal.me/jamshediqbal865"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline"
-                  >
-                    Complete Payment
-                  </a><br /><br />
-                  Please complete payment promptly to lock in your selected time slot.<br /><br />
-                  If you have any questions or concerns, feel free to reply to this email or contact us directly through. <br /> <a
-                    href="mailto:info@AutoCheckUs.com?subject=Booking Confirmation&body=Hi, I have a question about my booking."
-                    className="text-blue-600 underline"
-                  >
-                    Contact Support
-                  </a><br /><br />
-                  Thanks again — we’re excited to serve you.<br /><br />
-                  Best regards,<br />
-                  The AutoCheck Us Team
-                </p>
-              </div>
-
-
-            </div>
-          </div>
-
-
-          <p className="text-center text-sm text-gray-500 mt-6">
-            By completing this payment, you agree to our terms of service.
-            You will receive a confirmation email with your inspection details.
-          </p>
         </div>
+
+        {/* Security Notice */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <div className="flex items-center space-x-3">
+            <div className="border rounded-md p-4 bg-green-50 shadow-sm">
+              <h3 className="text-lg font-bold text-green-900 mb-2">Booking Confirmation</h3>
+              <p className="text-sm text-green-800">
+                Hi {formData.name},<br /><br />
+                Thank you for booking your vehicle inspection with us!<br /><br />
+                We’ve received your booking details and everything looks great. To confirm your appointment, please complete your payment using the secure link below:<br /><br />
+                <a
+                  href="https://www.paypal.me/jamshediqbal865"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  Complete Payment
+                </a><br /><br />
+                Please complete payment promptly to lock in your selected time slot.<br /><br />
+                If you have any questions or concerns, feel free to reply to this email or contact us directly through. <br /> <a
+                  href="mailto:info@AutoCheckUs.com?subject=Booking Confirmation&body=Hi, I have a question about my booking."
+                  className="text-blue-600 underline"
+                >
+                  Contact Support
+                </a><br /><br />
+                Thanks again — we’re excited to serve you.<br /><br />
+                Best regards,<br />
+                The AutoCheck Us Team
+              </p>
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <p className="text-center text-sm text-gray-500 mt-6">
+          By completing this payment, you agree to our terms of service.
+          You will receive a confirmation email with your inspection details.
+        </p>
       </div>
-      );
+    </div>
+  );
 };
 
-      export default PaymentSection;
+export default PaymentSection;

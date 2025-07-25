@@ -422,7 +422,50 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, selectedPackage }) 
 
         {/* Step 3: Inspection Details */}
         {currentStep === 3 && (
-              <>
+          <>
+            <div className="space-y-6">
+              <div className="text-center mb-6">
+                <Calendar className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+                <h3 className="text-2xl font-bold text-gray-900">Inspection Details</h3>
+                <p className="text-gray-600">When and where should we inspect your vehicle?</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                    <Calendar className="h-4 w-4" />
+                    <span>Preferred Date & Time *</span>
+                  </label>
+                  <input
+                    type="datetime-local"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    min={new Date().toISOString().slice(0, 16)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${errors.date ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                      }`}
+                  />
+                  {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                    <Clock className="h-4 w-4" />
+                    <span>Time Preference</span>
+                  </label>
+                  <select
+                    name="timePreference"
+                    value={formData.timePreference}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  >
+                    <option value="morning">Morning (8AM - 12PM)</option>
+                    <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                    <option value="evening">Evening (5PM - 8PM)</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </div>
+
                 <div className="md:col-span-2 space-y-2">
                   <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
                     <MapPin className="h-4 w-4" />
@@ -518,129 +561,127 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, selectedPackage }) 
           </>
         )}
 
-{/* Step 4: Additional Information */ }
-{
-  currentStep === 4 && (
-    <>
-      <div className="space-y-6">
-        <div className="text-center mb-6">
-          <FileText className="h-12 w-12 text-blue-600 mx-auto mb-3" />
-          <h3 className="text-2xl font-bold text-gray-900">Additional Information</h3>
-          <p className="text-gray-600">Help us provide the best inspection service</p>
-        </div>
+        {/* Step 4: Additional Information */}
+        {currentStep === 4 && (
+          <>
+            <div className="space-y-6">
+              <div className="text-center mb-6">
+                <FileText className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+                <h3 className="text-2xl font-bold text-gray-900">Additional Information</h3>
+                <p className="text-gray-600">Help us provide the best inspection service</p>
+              </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Previous Accidents</label>
-            <select
-              name="previousAccidents"
-              value={formData.previousAccidents}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-            >
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-              <option value="unknown">Unknown</option>
-            </select>
-          </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Previous Accidents</label>
+                  <select
+                    name="previousAccidents"
+                    value={formData.previousAccidents}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  >
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                    <option value="unknown">Unknown</option>
+                  </select>
+                </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Maintenance History</label>
-            <select
-              name="maintenanceHistory"
-              value={formData.maintenanceHistory}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-            >
-              <option value="regular">Regular Maintenance</option>
-              <option value="irregular">Irregular Maintenance</option>
-              <option value="unknown">Unknown</option>
-            </select>
-          </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Maintenance History</label>
+                  <select
+                    name="maintenanceHistory"
+                    value={formData.maintenanceHistory}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  >
+                    <option value="regular">Regular Maintenance</option>
+                    <option value="irregular">Irregular Maintenance</option>
+                    <option value="unknown">Unknown</option>
+                  </select>
+                </div>
 
-          <div className="md:col-span-2 space-y-2">
-            <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
-              <AlertCircle className="h-4 w-4" />
-              <span>Specific Concerns or Issues</span>
-            </label>
-            <textarea
-              name="specificConcerns"
-              value={formData.specificConcerns}
-              onChange={handleChange}
-              rows={3}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
-              placeholder="Any specific issues, noises, or concerns you'd like us to focus on..."
-            />
-          </div>
+                <div className="md:col-span-2 space-y-2">
+                  <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                    <AlertCircle className="h-4 w-4" />
+                    <span>Specific Concerns or Issues</span>
+                  </label>
+                  <textarea
+                    name="specificConcerns"
+                    value={formData.specificConcerns}
+                    onChange={handleChange}
+                    rows={3}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                    placeholder="Any specific issues, noises, or concerns you'd like us to focus on..."
+                  />
+                </div>
 
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-sm font-medium text-gray-700">Special Requests</label>
-            <textarea
-              name="specialRequests"
-              value={formData.specialRequests}
-              onChange={handleChange}
-              rows={2}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
-              placeholder="Any special requests or requirements..."
-            />
-          </div>
+                <div className="md:col-span-2 space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Special Requests</label>
+                  <textarea
+                    name="specialRequests"
+                    value={formData.specialRequests}
+                    onChange={handleChange}
+                    rows={2}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                    placeholder="Any special requests or requirements..."
+                  />
+                </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Emergency Contact Name</label>
-            <input
-              type="text"
-              name="emergencyContact"
-              value={formData.emergencyContact}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              placeholder="Emergency contact person"
-            />
-          </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Emergency Contact Name</label>
+                  <input
+                    type="text"
+                    name="emergencyContact"
+                    value={formData.emergencyContact}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Emergency contact person"
+                  />
+                </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Emergency Contact Phone</label>
-            <input
-              type="tel"
-              name="emergencyPhone"
-              value={formData.emergencyPhone}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              placeholder="Emergency contact phone"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-between pt-6 border-t">
-        <button
-          type="button"
-          onClick={prevStep}
-          className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-        >
-          Previous
-        </button>
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="ml-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-8 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
-        >
-          {isSubmitting ? (
-            <>
-              <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
-              <span>Processing...</span>
-            </>
-          ) : (
-            <span>Proceed to Payment</span>
-          )}
-        </button>
-      </div>
-    </>
-  )
-}
-<p className="text-center text-sm text-gray-500 mt-4">
-  Secure payment processing through PayPal. Your inspection will be scheduled after payment confirmation.
-</p>
-      </form >
-    </div >
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Emergency Contact Phone</label>
+                  <input
+                    type="tel"
+                    name="emergencyPhone"
+                    value={formData.emergencyPhone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Emergency contact phone"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between pt-6 border-t">
+              <button
+                type="button"
+                onClick={prevStep}
+                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Previous
+              </button>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="ml-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-8 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                    <span>Processing...</span>
+                  </>
+                ) : (
+                  <span>Proceed to Payment</span>
+                )}
+              </button>
+            </div>
+          </>
+        )}
+        <p className="text-center text-sm text-gray-500 mt-4">
+          Secure payment processing through PayPal. Your inspection will be scheduled after payment confirmation.
+        </p>
+      </form>
+    </div>
   );
 };
 
