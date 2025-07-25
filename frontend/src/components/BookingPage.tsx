@@ -99,7 +99,7 @@ const BookingPage: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                  AutoCheckUSA
+                  AutoTrustReport
                 </h1>
                 <p className="text-gray-600 text-sm">America's #1 Car Inspection Service</p>
               </div>
@@ -205,7 +205,7 @@ const BookingPage: React.FC = () => {
                 <div className="bg-blue-600 p-2 rounded-lg">
                   <Car className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold">AutoCheckUSA</span>
+                <span className="text-2xl font-bold">AutoTrustReport</span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
                 America's most trusted car inspection service. We provide comprehensive vehicle evaluations
@@ -236,7 +236,7 @@ const BookingPage: React.FC = () => {
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>1-800-AUTO-CHECK</li>
-                <li>support@autocheckusa.com</li>
+                <li>support@AutoTrustReport.com</li>
                 <li>Available 24/7</li>
                 <li>Nationwide Service</li>
               </ul>
@@ -244,7 +244,7 @@ const BookingPage: React.FC = () => {
           </div>
 
           <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-400">© 2025 AutoCheckUSA. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p className="text-gray-400">© 2025 AutoTrustReport. All rights reserved. | Privacy Policy | Terms of Service</p>
           </div>
         </div>
       </footer>

@@ -57,7 +57,7 @@ const ConfirmationPage: React.FC = () => {
             Booking Confirmed!
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Thank you for choosing AutoCheckUSA. Your car inspection has been successfully scheduled.
+            Thank you for choosing AutoTrustReport. Your car inspection has been successfully scheduled.
           </p>
         </div>
 
@@ -224,7 +224,7 @@ const ConfirmationPage: React.FC = () => {
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="h-4 w-4 text-blue-600" />
-              <span>support@autocheckusa.com</span>
+              <span>support@AutoTrustReport.com</span>
             </div>
           </div>
         </div>

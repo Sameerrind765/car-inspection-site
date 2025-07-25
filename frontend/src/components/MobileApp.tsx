@@ -138,7 +138,7 @@ const MobileApp: React.FC = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold">Inspector Mobile</h1>
-              <p className="text-green-100 text-sm">AutoCheckUSA Field App</p>
+              <p className="text-green-100 text-sm">AutoTrustReport Field App</p>
             </div>
           </div>
           <div className="relative">

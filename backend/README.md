@@ -1,4 +1,4 @@
-# AutoCheckUSA Backend API
+# AutoTrustReport Backend API
 
 Professional car inspection booking service backend with PayPal integration.
 

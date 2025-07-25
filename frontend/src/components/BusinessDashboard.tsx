@@ -134,7 +134,7 @@ const BusinessDashboard: React.FC = () => {
                 <Car className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">AutoCheckUSA Dashboard</h1>
+                <h1 className="text-3xl font-bold text-gray-900">AutoTrustReport Dashboard</h1>
                 <p className="text-gray-600">Business Analytics & Revenue Management</p>
               </div>
             </div>

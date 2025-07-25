@@ -1,7 +1,7 @@
 {
-  "name": "autocheckusa-backend",
+  "name": "AutoTrustReport-backend",
   "version": "1.0.0",
-  "description": "AutoCheckUSA Car Inspection Booking API",
+  "description": "AutoTrustReport Car Inspection Booking API",
   "main": "dist/server.js",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider ts-node-esm src/server.mts",
@@ -15,7 +15,7 @@
     "booking",
     "api"
   ],
-  "author": "AutoCheckUSA",
+  "author": "AutoTrustReport",
   "license": "MIT",
   "dependencies": {
     "@paypal/checkout-server-sdk": "^1.0.3",

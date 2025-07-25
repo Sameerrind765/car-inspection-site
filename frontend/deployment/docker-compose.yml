@@ -4,7 +4,7 @@ services:
   # MySQL Database
   mysql:
     image: mysql:8.0
-    container_name: autocheckusa_mysql
+    container_name: AutoTrustReport_mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -17,14 +17,14 @@ services:
       - mysql_data:/var/lib/mysql
       - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     networks:
-      - autocheckusa_network
+      - AutoTrustReport_network
 
   # Backend API
   backend:
     build:
       context: ../backend
       dockerfile: Dockerfile
-    container_name: autocheckusa_backend
+    container_name: AutoTrustReport_backend
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -45,12 +45,12 @@ services:
     volumes:
       - backend_uploads:/app/uploads
     networks:
-      - autocheckusa_network
+      - AutoTrustReport_network
 
   # Nginx Reverse Proxy
   nginx:
     image: nginx:alpine
-    container_name: autocheckusa_nginx
+    container_name: AutoTrustReport_nginx
     restart: unless-stopped
     ports:
       - "80:80"
@@ -62,19 +62,19 @@ services:
     depends_on:
       - backend
     networks:
-      - autocheckusa_network
+      - AutoTrustReport_network
 
   # Redis for caching (optional)
   redis:
     image: redis:alpine
-    container_name: autocheckusa_redis
+    container_name: AutoTrustReport_redis
     restart: unless-stopped
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     networks:
-      - autocheckusa_network
+      - AutoTrustReport_network
 
 volumes:
   mysql_data:
@@ -83,5 +83,5 @@ volumes:
   redis_data:
 
 networks:
-  autocheckusa_network:
+  AutoTrustReport_network:
     driver: bridge

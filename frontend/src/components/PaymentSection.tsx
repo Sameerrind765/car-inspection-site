@@ -46,7 +46,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ formData, onBack }) => 
               amount: {
                 value: selectedPackage?.price.toFixed(2) || '50.00'
               },
-              description: `AutoCheckUSA ${selectedPackage?.name || 'Car Inspection Service'}`
+              description: `AutoTrustReport ${selectedPackage?.name || 'Car Inspection Service'}`
             }]
           });
         },

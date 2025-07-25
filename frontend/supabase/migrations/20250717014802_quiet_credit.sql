@@ -1,9 +1,9 @@
--- AutoCheckUSA Database Schema
+-- AutoTrustReport Database Schema
 -- Complete database structure for car inspection booking system
 
 -- Create database
-CREATE DATABASE IF NOT EXISTS autocheckusa;
-USE autocheckusa;
+CREATE DATABASE IF NOT EXISTS AutoTrustReport;
+USE AutoTrustReport;
 
 -- Users table for authentication
 CREATE TABLE users (
