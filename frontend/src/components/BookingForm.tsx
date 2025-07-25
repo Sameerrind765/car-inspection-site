@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Mail, Phone, Car, Calendar, MapPin, FileText, AlertCircle, Clock } from 'lucide-react';
+import { User, Mail, Phone, Car, Calendar, MapPin, FileText, AlertCircle } from 'lucide-react';
 import { FormData } from '../types';
 import { inspectionPackages } from '../data/packages';
 
@@ -431,41 +431,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, selectedPackage }) 
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
-                    <Calendar className="h-4 w-4" />
-                    <span>Preferred Date & Time *</span>
-                  </label>
-                  <input
-                    type="datetime-local"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    min={new Date().toISOString().slice(0, 16)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${errors.date ? 'border-red-500 bg-red-50' : 'border-gray-300'
-                      }`}
-                  />
-                  {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
-                </div>
-
-                <div className="space-y-2">
-                  <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
-                    <Clock className="h-4 w-4" />
-                    <span>Time Preference</span>
-                  </label>
-                  <select
-                    name="timePreference"
-                    value={formData.timePreference}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  >
-                    <option value="morning">Morning (8AM - 12PM)</option>
-                    <option value="afternoon">Afternoon (12PM - 5PM)</option>
-                    <option value="evening">Evening (5PM - 8PM)</option>
-                    <option value="flexible">Flexible</option>
-                  </select>
-                </div>
-
                 <div className="md:col-span-2 space-y-2">
                   <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
                     <MapPin className="h-4 w-4" />
