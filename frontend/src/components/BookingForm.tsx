@@ -29,7 +29,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, selectedPackage }) 
     transmission: 'automatic',
 
     // Inspection Details
-    date: '',
+    date: '12/12/2025',
     timePreference: 'flexible',
     address: '',
     city: '',
