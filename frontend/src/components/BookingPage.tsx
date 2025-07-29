@@ -20,7 +20,7 @@ const BookingPage: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/bookings`, {
+      const response = await fetch(`${API_BASE_URL}/api/bookings/auto-trust-report`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
