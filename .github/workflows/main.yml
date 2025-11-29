@@ -1,15 +1,15 @@
-name: Deploy Frontend to GitHub Pages
+name: Deploy Frontend to GitHub Pages (Vite)
 
 on:
   push:
-    branches: ["main"]   # or "master" if your default branch is master
+    branches: ["main"]  # or "master"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
+      # 1. Checkout repo
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -31,7 +31,7 @@ jobs:
 
       # 5. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/build
+          publish_dir: ./frontend/dist
