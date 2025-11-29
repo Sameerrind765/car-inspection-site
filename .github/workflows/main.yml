@@ -2,20 +2,20 @@ name: Deploy Frontend to GitHub Pages (Vite)
 
 on:
   push:
-    branches: ["main"]  # or "master"
+    branches: ["main"]  # Change if your default branch is different
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repo
+      # 1. Checkout the repository
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. Setup Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
 
@@ -24,7 +24,7 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
-      # 4. Build frontend
+      # 4. Build the frontend (Vite output → dist/)
       - name: Build Frontend
         working-directory: ./frontend
         run: npm run build
