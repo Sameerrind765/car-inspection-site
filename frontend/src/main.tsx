@@ -6,8 +6,6 @@ import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <BrowserRouter basename="/car-inspection-site">
       <App />
-    </BrowserRouter>
   </StrictMode>
 );
