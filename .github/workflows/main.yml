@@ -1,37 +1,52 @@
-name: Deploy Frontend to GitHub Pages (Vite)
+name: Deploy Frontend to GitHub Pages
 
+# Trigger workflow on push to main branch
 on:
   push:
-    branches: ["main"]  # Change if your default branch is different
+    branches: ["main"]
+  workflow_dispatch:
+
+# Required permissions for GitHub Pages
+permissions:
+  pages: write
+  id-token: write
+  contents: read
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repository
-      - name: Checkout Repository
+      # 1. Checkout the repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: 18
 
-      # 3. Install frontend dependencies
-      - name: Install Frontend Dependencies
-        working-directory: ./frontend
+      # 3. Install dependencies
+      - name: Install Dependencies
+        working-directory: frontend
         run: npm install
 
-      # 4. Build the frontend (Vite output → dist/)
+      # 4. Build frontend
       - name: Build Frontend
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm run build
 
-      # 5. Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # 5. Upload the build folder (dist)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/dist
+          path: frontend/dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
