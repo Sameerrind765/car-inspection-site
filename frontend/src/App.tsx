@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BookingPage from './components/BookingPage';
 // import ConfirmationPage from './components/ConfirmationPage';
 // import AdminDashboard from './components/AdminDashboard';
@@ -7,7 +7,7 @@ import BookingPage from './components/BookingPage';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter basename="/car-inspection-site">
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Routes>
           <Route path="/" element={<BookingPage />} />
@@ -17,7 +17,7 @@ function App() {
           <Route path="/mobile" element={<MobileApp />} /> */}
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
